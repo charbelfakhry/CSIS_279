@@ -49,19 +49,17 @@ const test = () => {
 
 
 exports.updateUser = (req, res) => {
+    const {id, name, username, password, occupation, hobby, age} = req.body;
+    let updateUserSQL = `UPDATE users set user_name = "${name}", user_username = "${username}", user_password = "${password}",\
+    user_occupation = "${occupation}", user_hobby = "${hobby}", user_age="${age}"\
+    WHERE user_id = ${id}`;
 
-    const { dataId, dataCountryCode, dataName, dataDOB } = req.body;
-    console.log(req.body)
+    console.log(updateUserSQL);
 
-    let sql = `UPDATE users SET users.Code="${dataCountryCode}",  user_name="${dataName}", user_dob="${moment(dataDOB).format("YYYY-MM-DD")}" WHERE user_id=${dataId}`;
-    console.log(sql)
-
-    connection.query(sql, (err, result) => {
-        if (err) throw err;
-        res.status(200).send(result)
-
+    connection.query(updateUserSQL, (err, result)=>{
+        if(err) throw err;
+        res.status(200).send({msg: "User Updated."});
     })
-
 }
 
 exports.insertUser = (req, res) => {

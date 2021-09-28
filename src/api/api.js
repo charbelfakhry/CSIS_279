@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let baseUrl = `http://localhost:3001`
+const baseUrl = `http://localhost:3001`
 
 const getAll = async () => {
     let url = `${baseUrl}/getAllUsers`
@@ -9,7 +9,6 @@ const getAll = async () => {
 
 
 const update = async (data) => {
-    
     let url = `${baseUrl}/updateUser`
     return await axios.post(url, data).then(response => response).catch(err => err.response)
 }
