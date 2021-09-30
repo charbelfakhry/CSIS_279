@@ -50,15 +50,22 @@ const test = () => {
 
 exports.updateUser = (req, res) => {
     const {id, name, username, password, occupation, hobby, age} = req.body;
-    let updateUserSQL = `UPDATE users set user_name = "${name}", user_username = "${username}", user_password = "${password}",\
-    user_occupation = "${occupation}", user_hobby = "${hobby}", user_age="${age}"\
-    WHERE user_id = ${id}`;
 
-    console.log(updateUserSQL);
+    let saveSQL = "";
+    if(id && id !== ''){
+        saveSQL = `UPDATE users set user_name = "${name}", user_username = "${username}", user_password = "${password}",\
+        user_occupation = "${occupation}", user_hobby = "${hobby}", user_age="${age}"\
+        WHERE user_id = ${id}`;
+    }else{
+        saveSQL = `INSERT INTO users (user_name, user_username, user_password, user_occupation, user_hobby) VALUES\
+        ("${name}", "${username}", "${password}", "${occupation}", "${hobby}" )`;
+    }
 
-    connection.query(updateUserSQL, (err, result)=>{
+    console.log(saveSQL);
+
+    connection.query(saveSQL, (err, result)=>{
         if(err) throw err;
-        res.status(200).send({msg: "User Updated."});
+        res.status(200).send({msg: "User Saved."});
     })
 }
 
