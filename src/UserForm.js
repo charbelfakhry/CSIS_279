@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { deleteUser, getAll, update } from './api/api';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  useLocation
+} from "react-router-dom";
  
-const UserForm = (item, isUpdate) => {
+const UserForm = () => {
 
   const [values, setValues] = useState({
     id: '1',
@@ -12,8 +18,11 @@ const UserForm = (item, isUpdate) => {
     hobby: '',
   })
 
-  useEffect(()=>{
+  let location = useLocation();
 
+  useEffect(()=>{
+    
+    console.log(location);
     
   }, [])
 

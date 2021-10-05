@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { deleteUser, getAll, update } from './api/api';
 import UserForm from './UserForm';
  
@@ -87,6 +88,14 @@ const TableFunc = () => {
                   <td>{item.user_hobby}</td>
                   <td>{item.user_age}</td>
                   <td><button className="btn-sm btn-secondary" onClick={loadItem(item)}>Update</button></td>
+                  <td>
+                    <Link to={{
+                      pathname: '/userForm',
+                      state: {
+                        fromNotifications: true
+                      }
+                    }}>Update</Link>
+                  </td>
                   <td><button className="btn-sm btn-danger" onClick={deleteHandler(item)}>Del.</button></td>
                 </tr>
               )
