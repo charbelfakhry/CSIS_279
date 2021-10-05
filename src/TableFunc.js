@@ -54,7 +54,7 @@ const TableFunc = () => {
     <div className="container">
       <div className="row mt-3">
         <div className="col-1">
-          <button className="btn btn-primary">Add</button>
+          <Link to="/userForm" className="btn btn-primary">Add</Link>
         </div>
       </div>
       <table className="table">
@@ -87,12 +87,11 @@ const TableFunc = () => {
                   <td>{item.user_occupation}</td>
                   <td>{item.user_hobby}</td>
                   <td>{item.user_age}</td>
-                  <td><button className="btn-sm btn-secondary" onClick={loadItem(item)}>Update</button></td>
                   <td>
                     <Link to={{
                       pathname: '/userForm',
                       state: {
-                        fromNotifications: true
+                        user: item,
                       }
                     }}>Update</Link>
                   </td>
@@ -103,7 +102,6 @@ const TableFunc = () => {
           }
         </tbody>
       </table>
-    <UserForm item={user} isUpdate={false}/>
     </div>
   );
 };

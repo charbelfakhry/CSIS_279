@@ -21,9 +21,6 @@ const Menu = () => {
                         <Link className="nav-link" to="/users">Users</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/userForm" className="nav-link">Form</Link>
-                    </li>
-                    <li className="nav-item">
                         <Link to="/about" className="nav-link">About Us</Link>
                     </li>
                 </ul>
