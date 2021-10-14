@@ -11,6 +11,7 @@ import {
 import UserForm from './UserForm';
 import AboutUs from './components/AboutUs';
 import Menu from './components/Menu';
+import OrderTable from './Pages/OrderTable';
 function App({ saveUser }) {
   return (
     <div className="App">
@@ -28,6 +29,9 @@ function App({ saveUser }) {
           </Route>
           <Route path="/userForm">
             <UserForm />
+          </Route>
+          <Route path="/orderTable">
+            <OrderTable />
           </Route>
           <Route path="/">
             <h3>Home page</h3>
