@@ -24,7 +24,7 @@ router.post('/deleteProduct', ProductController.deleteProduct);
  * Orders Routes
  */
 
-router.post('/loadOrders', OrderController.getOrderWithAssData);
+router.get('/loadOrders', OrderController.getOrderWithAssData);
 
 
 

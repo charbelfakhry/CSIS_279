@@ -15,11 +15,11 @@ const connection = require('../config/database.config.js');
  * tables that are linked to the orders.
  */
 exports.getOrderWithAssData = async (req, res) => {
-    const { ProductName } = req.body;
-    let sql = `call order_by_productName("${ProductName}");`;
+    // const { ProductName } = req.body;
+    let sql = `call order_by_productName();`;
     connection.query(sql, (error, result)=>{
         if(error) throw error;
-        res.status(200).send(result);
+        res.status(200).send(result[0]);
     })
 
 }

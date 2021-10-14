@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,10 +7,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { getOrders } from '../api/api';
+import moment from "moment-timezone";
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
 }
+
+const convertDate = (fullDate) =>{
+    let dt = new Date(fullDate);
+    return dt.getFullYear()+"-"+Number(dt.getMonth()+1)+"-"+dt.getDay();
+}
+
+
 
 const rows = [
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -20,33 +30,48 @@ const rows = [
 ];
 
 export default function OrderTable() {
+    const [orders, setOrders] = useState([]);
+    useEffect(() => {
+        loadOrders();
+    }, [])
+
+    const loadOrders = async() =>{
+        const data = await getOrders();
+        setOrders(data.data);
+    }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell>Product Name</TableCell>
+                        <TableCell align="right">Qty/Unit</TableCell>
+                        <TableCell align="right">UnitPrice</TableCell>
+                        <TableCell align="right">OrderDate</TableCell>
+                        <TableCell align="right">Country</TableCell>
+                        <TableCell align="right">Company Name</TableCell>
+                        <TableCell align="right">Contact Name</TableCell>
+                        <TableCell align="right">Phone #</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {(orders)?orders.map((row, index) => (
                         <TableRow
-                            key={row.name}
+                            key={index}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {row.ProductName}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.QuantityPerUnit}</TableCell>
+                            <TableCell align="right">{row.UnitPrice}</TableCell>
+                            <TableCell align="right">{moment(row.OrderDate).format("YYYY-MM-DD")}</TableCell>
+                            <TableCell align="right">{row.ShipCountry}</TableCell>
+                            <TableCell align="right">{row.CompanyName}</TableCell>
+                            <TableCell align="right">{row.ContactName}</TableCell>
+                            <TableCell align="right">{row.Phone}</TableCell>
                         </TableRow>
-                    ))}
+                    )):null}
                 </TableBody>
             </Table>
         </TableContainer>

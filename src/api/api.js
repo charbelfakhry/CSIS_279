@@ -47,6 +47,11 @@ const getAllContinentPoint = async () => {
 
 }
 
+const getOrders = async () => {
+    let url = `${baseUrl}/loadOrders`
+    return await axios.get(url).then(response => response).catch(err => err.response)
+}
+
 
 
 
@@ -59,4 +64,5 @@ export {
     getAllContinent,
     getAllContinentPoint,
     // getCountryCode,
+    getOrders,
 }
