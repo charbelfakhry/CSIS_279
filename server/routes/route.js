@@ -4,6 +4,7 @@ var router = express.Router()
 var ControllerRoute = require('../controller/controller');
 var ProductController = require('../controller/productController');
 var OrderController = require('../controller/OrdersController');
+var MongoController = require('../controller/MongoController');
 
 /**
  * User Routes
@@ -25,6 +26,12 @@ router.post('/deleteProduct', ProductController.deleteProduct);
  */
 
 router.get('/loadOrders', OrderController.getOrderWithAssData);
+
+/**
+ * MongoDB Routes
+ */
+
+router.get('/loadCustomers', MongoController.getCustomers);
 
 
 
