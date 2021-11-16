@@ -13,6 +13,7 @@ import AboutUs from './components/AboutUs';
 import Menu from './components/Menu';
 import OrderTable from './Pages/OrderTable';
 import CustomerTable from './Pages/CustomerTable';
+import TableExtAPI from './TableExtAPI';
 function App({ saveUser }) {
   return (
     <div className="App">
@@ -36,6 +37,9 @@ function App({ saveUser }) {
           </Route>
           <Route path="/customers">
             <CustomerTable />
+          </Route>
+          <Route path="/crypto">
+            <TableExtAPI />
           </Route>
           <Route path="/">
             <h3>Home page</h3>
