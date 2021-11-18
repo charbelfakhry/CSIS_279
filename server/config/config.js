@@ -2,7 +2,7 @@ var config = {
   PORT : 3306,
   HOST : 'localhost',
   USER : 'root',
-  PASSWORD : 'root',
+  PASSWORD : '@dministrat0r',
   DB : 'csis_279_db',
   multipleStatements: true ,
 }
