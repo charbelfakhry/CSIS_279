@@ -69,6 +69,16 @@ exports.updateUser = (req, res) => {
     })
 }
 
+exports.fetchRefData = (req, res) =>{
+    const {tableName, id, name} = req.body;
+    let sql = `select ${id} as id, ${name} as name from ${tableName}`;
+    console.log(sql);
+    connection.query(sql, (err, result)=>{
+        if(err) throw err
+        res.status(200).send(result);
+    })
+}
+
 exports.insertUser = (req, res) => {
 
 

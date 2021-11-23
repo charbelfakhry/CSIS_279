@@ -17,8 +17,11 @@ const insertUser = async (data) => {
     // console.log("test " + data)
     let url = `${baseUrl}/insertUser`
     return await axios.post(url, data).then(response => response).catch(err => err.response)
+}
 
-
+const fetchRefData = async (data) =>{
+    let url = `${baseUrl}/fetchRefData`
+    return await axios.post(url, data).then(response => response).catch(err => err.response)
 }
 
 
@@ -72,4 +75,5 @@ export {
     // getCountryCode,
     getOrders,
     loadCustomers,
+    fetchRefData,
 }

@@ -38,7 +38,7 @@ app.use('/', cors(), routes);
 
 var task = cron.schedule('* * * * *', () => {
     console.log("this will be triggered every minute");
-    listCryptoCurrencies();
+    //listCryptoCurrencies();
 });
 
 
@@ -128,8 +128,8 @@ const listCryptoCurrencies = async () => {
 
 
 
-task.start();
-listCryptoCurrencies();
+// task.start();
+// listCryptoCurrencies();
 
 
 app.listen(port, () => {

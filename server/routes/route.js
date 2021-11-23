@@ -13,6 +13,7 @@ router.post('/updateUser', ControllerRoute.updateUser)
 router.post('/insertUser', ControllerRoute.insertUser)
 router.post('/deleteUser', ControllerRoute.deleteUser)
 router.get('/getAllUsers', ControllerRoute.getAll)
+router.post('/fetchRefData', ControllerRoute.fetchRefData);
 
 /**
  * Products Routes

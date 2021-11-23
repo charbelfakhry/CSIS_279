@@ -1,6 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteUser, loadCustomers } from '../api/api';
+import ResuableDropDown from '../components/reusable-cmpts/ResuableDropDown';
+
+let info = {
+  tableName: "country",
+  id: "country_id",
+  name: "country_name"
+}
+
+let cityInfo = {
+  tableName: "city",
+  id: "city_id",
+  name: "city"
+}
 
  
 const CustomerTable = () => {
@@ -53,7 +66,12 @@ const CustomerTable = () => {
   return (
     <div className="container">
       <div className="row mt-3">
-        
+        <div className="col">
+          <ResuableDropDown info={info} />
+        </div>
+        <div className="col">
+          <ResuableDropDown info={cityInfo} />
+        </div>
       </div>
       <table className="table">
         <thead>
